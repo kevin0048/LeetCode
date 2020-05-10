@@ -5,20 +5,13 @@ class Solution:
     def jump(self, nums) -> int:
         res = []
         def func(num_list, tot_step):
-            if len(num_list) == 0:
-                res.append(tot_step-1)
-                
-            elif len(num_list) == 1:
-                res.append(tot_step)
-                
-            else:
-                cur_num = num_list[0]
-                if cur_num >= len(num_list):
-                    res.append(tot_step+1)
-                    return
-                for i in range(1, cur_num+1):
-                    func(num_list[i:], tot_step + 1)
-        
+            cur_num = num_list[0]
+            if cur_num >= len(num_list)-1:
+                res.append(tot_step+1)
+                return
+            for i in range(1, cur_num+1):
+                func(num_list[i:], tot_step + 1)
+
         func(nums, 0)
         
         return min(res)
